@@ -1,3 +1,11 @@
+require("dotenv").config()
+```
+
+**5. Make sure `.gitignore` has `.env`:**
+```
+node_modules
+.env
+
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
@@ -12,7 +20,7 @@ app.use(cors())
 app.use(methodOverride("_method"))  // ✅ moved before routes
 app.set("view engine", "ejs")
 
-mongoose.connect("mongodb+srv://talal-yaqoob:talal1122@freecluster.p77ntse.mongodb.net/studentDB")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Atlas Connected!"))
   .catch(err => console.log(err))
 
