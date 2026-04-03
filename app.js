@@ -1,15 +1,8 @@
 require("dotenv").config()
-```
-
-**5. Make sure `.gitignore` has `.env`:**
-```
-node_modules
-.env
-
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-const methodOverride = require("method-override")  // ✅ moved to top
+const methodOverride = require("method-override")
 const Student = require("./models/Student")
 
 const app = express()
@@ -17,7 +10,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-app.use(methodOverride("_method"))  // ✅ moved before routes
+app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
 
 mongoose.connect(process.env.MONGO_URI)
@@ -32,6 +25,7 @@ app.get("/", async (req, res) => {
   res.render("index", { students })
 })
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000")
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
